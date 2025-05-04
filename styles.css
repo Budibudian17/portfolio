@@ -1536,21 +1536,21 @@ footer::before {
     .nav-links {
         position: fixed;
         top: 0;
-        right: -100%;
-        width: 100%;
+        left: 0;
+        width: 100vw;
         height: 100vh;
-        background: var(--light);
+        background: rgba(255,255,255,0.98);
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        right: unset;
         transition: var(--transition);
         z-index: 1000;
+        transform: translateY(-100%);
     }
-
     .nav-links.active {
-        right: 0;
+        transform: translateY(0);
     }
-
     .nav-links li {
         margin: 1.5rem 0;
     }
@@ -1576,7 +1576,7 @@ footer::before {
     }
 
     .hero {
-        padding-top: 100px;
+        padding-top: 55%;
     }
 
     .hero .container {
@@ -1749,5 +1749,20 @@ footer .copyright {
     }
     * {
         cursor: auto !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .newsletter-form {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    .newsletter-input,
+    .newsletter-btn {
+        width: 100%;
+        border-radius: 5px;
     }
 }
