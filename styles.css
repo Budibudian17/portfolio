@@ -1574,6 +1574,43 @@ footer::before {
     .contact-form {
         padding: 2rem;
     }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .hero .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-text {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .hero-image {
+        width: 100%;
+        margin: 0 auto 2rem auto;
+        display: flex;
+        justify-content: center;
+    }
+    .hero-image img {
+        max-width: 160px;
+        border-radius: 16px;
+        box-shadow: var(--shadow-lg);
+    }
+    h1 {
+        font-size: 2rem;
+        word-break: break-word;
+        line-height: 1.2;
+    }
+    .btn, .btn-outline {
+        width: 100%;
+        margin: 0.5rem 0 0 0;
+        padding: 0.8rem 0;
+        font-size: 1rem;
+    }
 }
 
 .hero .container {
@@ -1703,4 +1740,14 @@ footer::before {
 footer .copyright {
     text-align: center;
     margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .cursor,
+    .cursor-follower {
+        display: none !important;
+    }
+    * {
+        cursor: auto !important;
+    }
 }
