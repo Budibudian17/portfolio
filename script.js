@@ -290,7 +290,7 @@ const portfolioData = {
         image: 'img/portfolio.png',
         tech: ['HTML', 'CSS', 'JavaScript'],
         website: '#',
-        github: '#'
+        github: 'https://github.com/Budibudian17/portfolio.git'
     }
 };
 
