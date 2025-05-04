@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">Portfolio</a>
+                <div class="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#learning">Learning</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-text">
+                <h1>Hello, I'm <span class="typed-text"></span></h1>
+                <p>I'm a passionate student with experience in creating beautiful and functional digital experiences, always eager to learn and grow more.</p>
+                <a href="#contact" class="btn btn-primary">Let's Connect</a>
+                <a href="#portfolio" class="btn btn-outline">My Work</a>
+            </div>
+            <div class="hero-image">
+                <img src="img/hilmi3.jpeg" alt="Profile Image">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Get to know me a little better</p>
+            </div>
+            <div class="about-inner">
+                <div class="about-image">
+                    <img src="img/hilmi4.jpg" alt="About Image">
+                </div>
+                <div class="about-text">
+                    <h3>Who am I?</h3>
+                    <p>Hi! I'm <b>Hilmi Farrel Firjatullah</b>, a student at SMKN 01 Depok majoring in Software and Game Development. I'm passionate about building web applications and developing 3D games. I've worked on real-world projects like <span style="font-weight: bold;"><span style="color: #000000;">Cipta</span><span style="color: #07a307;">Life</span></span>, a health management system for the Depok City Health Department, where I helped digitize patient services and manage health data. This experience sharpened my skills in web development, teamwork, and problem-solving.</p>
+                    <p>With a strong foundation in HTML, CSS, JavaScript, React.js, and PHP, I'm always eager to learn new technologies like Unity and Blender. Outside of coding, I'm active in ROHIS, enjoy football (huge Cristiano Ronaldo fan!), and love exploring 3D modeling as a hobby. My dream is to one day work with world-class companies like Hoyoverse or RIOT Games and contribute to innovative digital experiences.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>18</h3>
+                            <p>Years Old</p>
+                        </div>
+                        <div class="stat">
+                            <h3>3</h3>
+                            <p>Years in Software Development</p>
+                        </div>
+                        <div class="stat">
+                            <h3>2</h3>
+                            <p>Projects Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Services</h2>
+                <p>What I can do for you</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Creating responsive and dynamic websites with modern technologies that provide exceptional user experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>From wireframes to pixel-perfect interfaces, I design both the user journey and the final visual interface to ensure great user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+                <p>What I'm good at</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fas fa-star"></i> Technical Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-html5"></i>HTML</span>
+                            <span class="skill-level advanced">Advanced</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Building semantic and accessible web structures. Experienced in HTML5 features and best practices.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-css3-alt"></i>CSS</span>
+                            <span class="skill-level advanced">Advanced</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Creating responsive designs with modern CSS3, Flexbox, and Grid. Proficient in animations and transitions.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-js"></i>JavaScript</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Building interactive web applications. Familiar with ES6+ features and modern JavaScript patterns.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-react"></i>React & Next.js</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Developing modern web applications using React hooks and Next.js for server-side rendering.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-paint-brush"></i> Design Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fas fa-mobile-alt"></i>Responsive Design</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Creating fluid layouts that work seamlessly across all devices using media queries and flexible units.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fas fa-user-circle"></i>UI/UX Design</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Designing intuitive user interfaces with focus on user experience and accessibility standards.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-figma"></i>Figma</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Creating wireframes and prototypes. Collaborating with teams using Figma's design system.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-adobe"></i>Photoshop</span>
+                            <span class="skill-level beginner">Beginner</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Basic image editing and manipulation. Creating simple graphics and optimizing images for web.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Other Skills</h3>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fas fa-lightbulb"></i>Problem Solving</span>
+                            <span class="skill-level advanced">Advanced</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Analyzing complex problems and implementing efficient solutions. Strong debugging skills.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fas fa-language"></i>Languages</span>
+                            <span class="skill-level intermediate">Intermediate +</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Fluent in English (TOEIC Score: 750+). Strong written and verbal communication skills in both technical and business contexts.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-git-alt"></i>Git & Github</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Version control and collaboration using Git. Managing repositories and pull requests on GitHub.</p>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-info">
+                            <span><i class="fab fa-unity"></i>Unity & C#</span>
+                            <span class="skill-level intermediate">Intermediate</span>
+                        </div>
+                        <div class="skill-description">
+                            <p>Game development with Unity engine and C#. Creating 2D/3D games and interactive experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currently Learning Section -->
+    <section id="learning" class="learning">
+        <div class="container">
+            <div class="section-title">
+                <h2>Currently Learning</h2>
+                <p>Expanding my knowledge and skills</p>
+            </div>
+            <div class="learning-grid">
+                <div class="learning-card">
+                    <div class="learning-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Game Development</h3>
+                    <p>Deepening my knowledge in Unity game engine and C# programming. Learning about game mechanics, physics, AI, and multiplayer networking to create immersive gaming experiences.</p>
+                    <div class="learning-stage">
+                        <div class="stage-indicator">
+                            <span class="stage active"></span>
+                            <span class="stage active"></span>
+                            <span class="stage"></span>
+                            <span class="stage"></span>
+                            <span class="stage"></span>
+                        </div>
+                        <span class="stage-label">Beginner Level</span>
+                    </div>
+                </div>
+                <div class="learning-card">
+                    <div class="learning-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>3D Modeling</h3>
+                    <p>Mastering Blender for 3D modeling, texturing, and animation. Focusing on character design, environment creation, and asset development for games and interactive experiences.</p>
+                    <div class="learning-stage">
+                        <div class="stage-indicator">
+                            <span class="stage active"></span>
+                            <span class="stage active"></span>
+                            <span class="stage active"></span>
+                            <span class="stage"></span>
+                            <span class="stage"></span>
+                        </div>
+                        <span class="stage-label">Intermediate Level</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Portfolio</h2>
+                <p>Check out my latest work</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/ciptalife.png" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>CiptaLife</h3>
+                        <p>CiptaLife is a web-based healthcare platform that helps digitize services at Depok's Health Department.</p>
+                        <div class="portfolio-links">
+                            <a href="https://ciptalife.id/" class="portfolio-link" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link" data-project="ciptalife"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/ERP.jpeg" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>ERP System</h3>
+                        <p>An ERP system for a company that helps manage their business operations.</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link" data-project="erp"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/portfolio.png" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Portfolio</h3>
+                        <p>A personal portfolio website to highlight my skills, projects, and passion in web development and digital design.</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link" data-project="portfolio"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Certifications</h2>
+                <p>Continuous Learning Journey</p>
+            </div>
+            <div class="certifications-grid">
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="img/sertifikasikelasindustri.jpg" alt="Certification">
+                        <div class="certification-overlay">
+                            <a href="img/sertifikasikelasindustri.jpg" class="certification-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="certification-info">
+                        <h3>Industry Class Certificate</h3>
+                        <p class="certification-issuer">PT. Ciptadra SoftIndo</p>
+                        <p class="certification-date">Issued: February 2025</p>
+                        <p class="certification-description">Comprehensive training in modern web development stack, focusing on both frontend and backend technologies. This certification represents my commitment to mastering industry-standard tools and practices.</p>
+                        <div class="certification-tags">
+                            <span class="certification-tag">HTML</span>
+                            <span class="certification-tag">CSS</span>
+                            <span class="certification-tag">JavaScript</span>
+                            <span class="certification-tag">React.JS</span>
+                            <span class="certification-tag">Next.JS</span>
+                            <span class="certification-tag">Golang</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-image" style="display: flex">
+                        <div style="flex: 1; position: relative">
+                            <img src="img/sertifikasitoeic.jpeg" alt="Certification" style="width: 100%; height: 100%; object-fit: cover">
+                            <div class="certification-overlay">
+                                <a href="img/sertifikasitoeic.jpeg" class="certification-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div style="flex: 1; position: relative">
+                            <img src="img/skorttoeic.jpeg" alt="Certification" style="width: 100%; height: 100%; object-fit: cover">
+                            <div class="certification-overlay">
+                                <a href="img/skorttoeic.jpeg" class="certification-link" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="certification-info">
+                        <h3>TOEIC Certificate</h3>
+                        <p class="certification-issuer">WELTS (World English Language Testing Services)</p>
+                        <p class="certification-date">Issued: December 2024</p>
+                        <p class="certification-description">Demonstrating strong English communication skills essential for international collaboration and technical documentation in the software development field.</p>
+                        <div class="certification-tags">
+                            <span class="certification-tag">Listening</span>
+                            <span class="certification-tag">Reading</span>
+                            <span class="certification-tag">Grammar</span>
+                            <span class="certification-tag">Vocabulary</span>
+                            <span class="certification-tag">Comprehension</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="certification-card">
+                    <div class="certification-image">
+                        <img src="img/setifgame.jpg" alt="Certification">
+                        <div class="certification-overlay">
+                            <a href="img/setifgame.jpg" class="certification-link" target="_blank">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="certification-info">
+                        <h3>Game Development Fundamentals</h3>
+                        <p class="certification-issuer">LPK CIPTA PESONA KHARISINDO</p>
+                        <p class="certification-date">Issued: March 2025</p>
+                        <p class="certification-description">While specializing in web and front-end development, I pursued game development to broaden my technical horizons and bring fresh perspectives to my core work.</p>
+                        <div class="certification-tags">
+                            <span class="certification-tag">Game Development</span>
+                            <span class="certification-tag">Problem Solving</span>
+                            <span class="certification-tag">Creative Design</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Testimonials</h2>
+                <p>Those who have worked with me say</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonials-track">
+                    <div class="testimonial">
+                        <img src="img/Perdana.png" alt="Colleague Image" class="testimonial-img">
+                        <p>"If your curiosity is a fire, then you've successfully ignited the passion in everything you do. Keep that flame burning, because that's where success begins."</p>
+                        <h4 class="testimonial-name">M. Rizky Perdana</h4>
+                        <p class="testimonial-position">Senior Developer, CiptaLife</p>
+                    </div>
+                    <div class="testimonial">
+                        <img src="img/ramdani.jpg" alt="Colleague Image" class="testimonial-img">
+                        <p>"Your work has been impressive — you complete tasks quickly and efficiently, which is a great strength. With continuous improvement, especially in writing cleaner code and enhancing communication within the team, you have the potential to grow even further."</p>
+                        <h4 class="testimonial-name">M. Ramdhani</h4>
+                        <p class="testimonial-position">Senior Developer, CiptaLife</p>
+                    </div>
+                    <div class="testimonial">
+                        <img src="img/pakren.jpg" alt="Colleague Image" class="testimonial-img">
+                        <p>"Hilmi was instrumental in developing our school's website. His technical expertise and commitment to deadlines made the project a success. Looking forward to working with him again!"</p>
+                        <h4 class="testimonial-name">Rendy Renaldi Brahim</h4>
+                        <p class="testimonial-position">Senior Project Manager Office Ciptadra SoftIndo</p>
+                    </div>
+                    <div class="testimonial">
+                        <img src="img/jaki.jpg" alt="Colleague Image" class="testimonial-img">
+                        <p>"Your frontend development skills are impressive. You have a great eye for detail and always ensure the user interface is polished and responsive. Your dedication to writing clean, maintainable code makes you a valuable team member."</p>
+                        <h4 class="testimonial-name">Zaki Andriansa</h4>
+                        <p class="testimonial-position">Software Development Peer – SMKN 01 Depok | Incoming Informatics Engineering Student, UNJ</p>
+                    </div>
+                </div>
+                <div class="testimonial-dots">
+                    <div class="testimonial-dot active" data-index="0"></div>
+                    <div class="testimonial-dot" data-index="1"></div>
+                    <div class="testimonial-dot" data-index="2"></div>
+                    <div class="testimonial-dot" data-index="3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+                <p>Get in touch</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Address</h3>
+                    <p><a href="https://www.google.com/maps?q=Depok+City,+West+Java,+Indonesia" target="_blank">Depok City, West Java, Indonesia</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=hilmifarrel03@gmail.com" target="_blank">hilmifarrel03@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>WhatsApp</h3>
+                    <p><a href="https://wa.me/6285880119197">+62 858-8011-9197</a></p>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send Me a Message</h3>
+                <p>Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-col">
+                    <h3>About Me</h3>
+                    <p>I'm a passionate student with experience in creating beautiful and functional digital experiences, always eager to learn and grow more.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#learning">Learning</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to my newsletter to receive updates on my latest projects and industry insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" class="newsletter-input" placeholder="Your Email" required>
+                        <button type="submit" class="newsletter-btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll To Top -->
+    <div class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="portfolioModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <img src="" alt="Project Image" class="modal-image">
+            <h3 class="modal-title"></h3>
+            <p class="modal-description"></p>
+            <div class="modal-tech"></div>
+            <div class="modal-links">
+                <a href="#" class="modal-link" target="_blank"><i class="fas fa-link"></i> Visit Website</a>
+                <a href="#" class="modal-link" target="_blank"><i class="fab fa-github"></i> View Code</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+
+    <div id="custom-alert" class="custom-alert">
+        <span id="custom-alert-icon"></span>
+        <span id="custom-alert-message"></span>
+    </div>
+</body>
+</html> 
