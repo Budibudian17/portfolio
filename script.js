@@ -335,7 +335,7 @@ const portfolioData = {
         title: 'ERP System',
         description: 'An Enterprise Resource Planning system designed to streamline business operations. It includes modules for inventory management, sales tracking, and financial reporting.',
         image: 'img/ERP.jpeg',
-        tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
+        tech: ['HTML', 'CSS', 'JavaScript', 'Phalcon', 'MySQL'],
         website: null,
         github: null
     },
@@ -344,8 +344,8 @@ const portfolioData = {
         description: 'A personal portfolio website showcasing my skills, projects, and experience in web development. Built with modern design principles and responsive layout.',
         image: 'img/portfolio.png',
         tech: ['HTML', 'CSS', 'JavaScript'],
-        website: '#',
-        github: '#'
+        website: 'https://hilmiportfoliodev.netlify.app/',
+        github: 'https://github.com/Budibudian17/portfolio.git'
     }
 };
 
