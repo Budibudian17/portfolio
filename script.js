@@ -1,17 +1,32 @@
-// Custom Cursor
+// Custom Cursor with performance optimization
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
+let mouseX = 0;
+let mouseY = 0;
+let followerX = 0;
+let followerY = 0;
+
+// Use requestAnimationFrame for smooth cursor movement
+function updateCursor() {
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+    
+    // Smooth follower movement
+    followerX += (mouseX - followerX) * 0.1;
+    followerY += (mouseY - followerY) * 0.1;
+    cursorFollower.style.left = followerX + 'px';
+    cursorFollower.style.top = followerY + 'px';
+    
+    requestAnimationFrame(updateCursor);
+}
 
 document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-    
-    // Add slight delay to follower for smooth effect
-    setTimeout(() => {
-        cursorFollower.style.left = e.clientX + 'px';
-        cursorFollower.style.top = e.clientY + 'px';
-    }, 100);
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
+
+// Start cursor animation
+updateCursor();
 
 // Add active class on clickable elements
 document.querySelectorAll('a, button, .portfolio-item, .service-card, .skill-category').forEach(item => {
@@ -147,37 +162,63 @@ function showCustomAlert(message, type = 'success') {
 }
 
 // Contact Form
-
-contactForm.addEventListener('submit', function(e) {
+// Improved: Button state always resets after sending (success or error)
+contactForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     
-    // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
+    // Get submit button and store original text outside try-catch for proper scope
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
 
-    // EmailJS parameters
-    const templateParams = {
-        name: name,
-        email: email,
-        subject: subject,
-        message: message
-    };
+    try {
+        // Get form values
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const subject = document.getElementById('subject').value.trim();
+        const message = document.getElementById('message').value.trim();
 
-    // Send email
-    emailjs.send('service_m2m5lme', 'template_jkr2w1k', templateParams)
-        .then(function(response) {
+        // Basic validation
+        if (!name || !email || !subject || !message) {
+            throw new Error('Please fill in all fields');
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            throw new Error('Please enter a valid email address');
+        }
+
+        // EmailJS parameters
+        const templateParams = {
+            name,
+            email,
+            subject,
+            message
+        };
+
+        // Send email
+        const response = await emailjs.send('service_m2m5lme', 'template_jkr2w1k', templateParams);
+        
+        if (response.status === 200) {
             showCustomAlert('Pesan berhasil dikirim! Saya akan segera membalas email Anda.', 'success');
             contactFormWrapper.classList.add('fade');
             setTimeout(() => {
                 contactForm.reset();
                 contactFormWrapper.classList.remove('fade');
             }, 400);
-        }, function(error) {
-            showCustomAlert('Maaf, terjadi kesalahan. Silakan coba lagi nanti.', 'error');
-            console.error('Error:', error);
-        });
+        } else {
+            throw new Error('Failed to send message');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        showCustomAlert(error.message || 'Maaf, terjadi kesalahan. Silakan coba lagi nanti.', 'error');
+    } finally {
+        // Always reset button state
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    }
 });
 
 // Newsletter Form
@@ -211,22 +252,36 @@ newsletterForm.addEventListener('submit', (e) => {
     });
 });
 
-// Scroll Reveal Animation
-const revealElements = document.querySelectorAll('.section-title, .about-inner, .services-grid, .skills-grid, .portfolio-grid, .testimonials-slider, .contact-info, .contact-form, .footer-inner');
-
-function revealOnScroll() {
-    revealElements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        
-        if (elementTop < window.innerHeight && elementBottom > 0) {
-            element.classList.add('reveal');
-        }
-    });
+// Improved scroll performance with debounce
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
 }
 
-window.addEventListener('scroll', revealOnScroll);
-window.addEventListener('load', revealOnScroll);
+// Optimized scroll reveal with Intersection Observer
+const revealElements = document.querySelectorAll('.section-title, .about-inner, .services-grid, .skills-grid, .portfolio-grid, .testimonials-slider, .contact-info, .contact-form, .footer-inner');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            revealObserver.unobserve(entry.target); // Stop observing once revealed
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
 
 // Typed Text Animation
 const typedText = document.querySelector('.typed-text');
@@ -290,7 +345,7 @@ const portfolioData = {
         image: 'img/portfolio.png',
         tech: ['HTML', 'CSS', 'JavaScript'],
         website: '#',
-        github: 'https://github.com/Budibudian17/portfolio.git'
+        github: '#'
     }
 };
 
