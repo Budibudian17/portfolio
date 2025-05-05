@@ -327,7 +327,7 @@ const portfolioData = {
         title: 'CiptaLife',
         description: "As a front-end developer, I contributed to building the user interface and implementing responsive designs for CiptaLife, a healthcare platform for Depok's Health Department. My role involved creating interactive components and ensuring optimal user experience across all devices.",
         image: 'img/ciptalife.png',
-        tech: ['HTML', 'CSS', 'JavaScript', 'Next.JS', 'React.JS', 'Golang', 'MySQL'],
+        tech: ['HTML', 'CSS', 'Next.JS', 'React.JS', 'Golang', 'MySQL'],
         website: 'https://ciptalife.id/',
         github: null
     },
