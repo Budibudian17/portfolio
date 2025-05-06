@@ -624,8 +624,11 @@ function saveScoreToLeaderboard(timeStr, moves) {
     const score = { time: timeStr, moves, totalSeconds, date: new Date().toISOString() };
     let leaderboard = JSON.parse(localStorage.getItem('memoryLeaderboard') || '[]');
     leaderboard.push(score);
-    // Sort by totalSeconds ascending
-    leaderboard.sort((a, b) => a.totalSeconds - b.totalSeconds);
+    // Sort by totalSeconds ascending, if same then by moves ascending
+    leaderboard.sort((a, b) => {
+        if (a.totalSeconds !== b.totalSeconds) return a.totalSeconds - b.totalSeconds;
+        return a.moves - b.moves;
+    });
     // Keep only top 10
     leaderboard = leaderboard.slice(0, 10);
     localStorage.setItem('memoryLeaderboard', JSON.stringify(leaderboard));
@@ -634,6 +637,12 @@ function saveScoreToLeaderboard(timeStr, moves) {
 function renderLeaderboard() {
     const leaderboardList = document.getElementById('leaderboard-list');
     let leaderboard = JSON.parse(localStorage.getItem('memoryLeaderboard') || '[]');
+    // Sort by totalSeconds ascending, if same then by moves ascending
+    leaderboard.sort((a, b) => {
+        if (a.totalSeconds !== b.totalSeconds) return a.totalSeconds - b.totalSeconds;
+        return a.moves - b.moves;
+    });
+    leaderboard = leaderboard.slice(0, 10);
     if (leaderboard.length === 0) {
         leaderboardList.innerHTML = '<p style="text-align:center; color:#888;">No records yet. Play the game to set your best score!</p>';
         return;

@@ -2320,6 +2320,7 @@ footer::before {
     }
     .game-header {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 2rem;
@@ -2330,6 +2331,13 @@ footer::before {
         background: none !important;
         box-shadow: none !important;
         padding: 0 !important;
+    }
+    .game-controls {
+        display: flex;
+        flex-direction: row;
+        gap: 1.2rem;
+        align-items: center;
+        margin: 0;
     }
     /* Custom cursor always visible di atas modal game */
     .game-modal.active ~ .cursor,
