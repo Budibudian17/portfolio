@@ -1820,7 +1820,7 @@ footer::before {
     height: 150px;
     position: relative;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
+    transition: transform 0.3s;
     cursor: pointer;
 }
 

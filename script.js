@@ -567,7 +567,7 @@ function flipCard(card) {
                 firstCard = false;
                 secondCard = false;
                 boardLocked = false;
-            }, 900);
+            }, 400);
         }
     }
 }
