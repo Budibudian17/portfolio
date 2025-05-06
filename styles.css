@@ -1904,17 +1904,12 @@ footer::before {
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
     box-shadow: var(--shadow-lg);
-    animation: float 3s ease-in-out infinite;
+    animation: none !important;
+    transform: none !important;
 }
 
 .game-button .btn i {
     font-size: 1.2rem;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
 }
 
 /* Game Modal - Improved */
@@ -1931,7 +1926,7 @@ footer::before {
     transition: opacity 0.3s ease;
     justify-content: center;
     align-items: center;
-    overflow-y: auto;
+    padding: 0 8px;
 }
 
 .game-modal.active {
@@ -1941,107 +1936,409 @@ footer::before {
 
 .game-modal-content {
     background: var(--light);
-    max-width: 900px;
-    width: 98vw;
-    margin: 2rem auto;
-    padding: 1.5rem 0.5rem;
+    max-width: 95vw;
+    width: 100%;
+    margin: auto;
+    padding: 2rem 1.2rem;
     border-radius: 16px;
     position: relative;
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-    box-shadow: 0 8px 32px rgba(82,34,208,0.15);
+    box-sizing: border-box;
+    max-height: 90vh;
     overflow-y: auto;
-    max-height: 95vh;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
 }
 
-@media screen and (max-width: 900px) {
-    .game-modal-content {
-        max-width: 99vw;
-        padding: 1rem 0.2rem;
-    }
+.game-modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+
+.game-header, .game-stats, .game-controls {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: flex-start;
+}
+
     .game-board {
-        grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.7rem !important;
+}
+
+.memory-card {
+    height: 90px !important;
+}
+
+#leaderboard-list table {
+    font-size: 0.95rem;
+}
+
+#leaderboard-list th, #leaderboard-list td {
+    padding: 4px !important;
+}
+
+/* Game Toggle Button & Panel */
+.game-toggle-wrapper {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    position: fixed;
     }
+#game-toggle-btn {
+    z-index: 2;
+    transition: none;
+    border-radius: 50% !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-@media screen and (max-width: 600px) {
-    .game-modal-content {
-        max-width: 100vw;
-        padding: 0.5rem 0.1rem;
-    }
-    .game-board {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Update existing game container styles */
-.game-container {
-    background: transparent;
-    box-shadow: none;
-    padding: 0;
-}
-
-@media screen and (max-width: 768px) {
-    .game-button {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: 20px;
-    }
-    
-    .game-button .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-    
-    .game-button .btn span {
-        display: none;
-    }
-    
-    .game-button .btn i {
-        font-size: 1.4rem;
-    }
-}
-
-/* Show custom cursor in game modal */
-.game-modal.active ~ .cursor,
-.game-modal.active ~ .cursor-follower,
-.game-modal.active .cursor,
-.game-modal.active .cursor-follower {
-    display: block !important;
-    z-index: 30000 !important;
-}
-
-.game-modal, .game-modal * {
-    cursor: none !important;
-}
-
-/* Custom cursor always visible on desktop */
-.cursor, .cursor-follower {
-    display: block !important;
-    z-index: 30000 !important;
-}
-
-.game-modal, .game-modal * {
-    cursor: none !important;
-}
-
-/* Modal Animation */
-.game-modal {
+#game-buttons-panel {
+    position: absolute;
+    left: 56px;
+    bottom: 0;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+    transform: translateX(-20px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding: 0;
 }
-.game-modal.active {
+#game-buttons-panel.active {
     opacity: 1;
     pointer-events: auto;
+    transform: translateX(0);
+}
+#game-buttons-panel .btn {
+    white-space: nowrap;
+    max-width: 220px;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 56px;
+    animation: none !important;
+    transform: none !important;
+}
+#game-buttons-panel .btn i {
+    margin-right: 0.7em;
+}
+.game-button-hidden {
+    display: flex;
+}
+@media screen and (max-width: 768px) {
+    .game-toggle-wrapper {
+        left: 0;
+        right: 0;
+        width: 100vw;
+        bottom: 20px;
+        justify-content: flex-start;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    #game-toggle-btn {
+        margin-left: 8px;
+    }
+    #game-buttons-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 70px;
+        width: 100vw;
+        max-width: 100vw;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0;
+        padding: 0 8px;
+        align-items: stretch;
+        z-index: 9999;
+        box-sizing: border-box;
+    }
+    #game-buttons-panel .btn {
+        max-width: 100%;
+        width: 100%;
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+        height: 48px;
+        font-size: 1rem;
+        justify-content: center;
+    }
+    /* Modal rework for mobile */
+    .game-modal, #leaderboardModal {
+        align-items: flex-end !important;
+        justify-content: center !important;
+        padding: 0;
+    }
+    .game-modal-content, #leaderboardModal .game-modal-content {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 0 !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        position: fixed !important;
+        box-sizing: border-box;
+        padding: 0.7rem 0.2rem 0.7rem 0.2rem !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        z-index: 30001;
+    }
+    .game-modal-close, .leaderboard-close {
+        top: 0.7rem !important;
+        right: 1.1rem !important;
+        font-size: 2rem !important;
+    }
+    .game-header {
+        flex-shrink: 0;
+        width: 100%;
+        margin-bottom: 0.7rem;
+    }
+    .game-stats, .game-controls {
+        flex-direction: column !important;
+        gap: 0.7rem !important;
+        align-items: flex-start !important;
+        width: 100%;
+    }
+    .game-board {
+        flex: 1 1 0%;
+        min-height: 0;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+        padding: 0 2vw;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 2vw !important;
+        box-sizing: border-box !important;
+    }
+    .memory-card {
+        width: 100%;
+        aspect-ratio: 1/1;
+        min-height: 0;
+        border-radius: 10px;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    #leaderboard-list table {
+        font-size: 0.95rem;
+    }
+    #leaderboard-list th, #leaderboard-list td {
+        padding: 4px !important;
+    }
 }
 
-.game-modal-content {
+/* Modal rework for all screen sizes */
+.game-modal, #leaderboardModal {
+        display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 20000;
     opacity: 0;
-    transform: scale(0.96);
-    transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
 }
-.game-modal-content.show {
+.game-modal.active, #leaderboardModal.active {
+    display: flex;
     opacity: 1;
-    transform: scale(1);
+}
+.game-modal-content, #leaderboardModal .game-modal-content {
+    background: var(--light);
+    max-width: 95vw;
+    width: 100%;
+    margin: auto;
+    padding: 2rem 1.2rem;
+    border-radius: 16px;
+    position: relative;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.game-modal-close, .leaderboard-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: var(--dark);
+    cursor: pointer;
+    transition: var(--transition);
+    z-index: 10;
+}
+@media (max-width: 400px) {
+    .game-modal-content, #leaderboardModal .game-modal-content {
+        padding: 0.7rem 0.2rem !important;
+}
+    .game-modal-close, .leaderboard-close {
+        top: 0.3rem !important;
+        right: 0.5rem !important;
+    }
+}
+
+/* Mobile Game Menu Modal */
+.game-menu-modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.7);
+    z-index: 30000;
+    justify-content: center;
+    align-items: flex-end;
+    transition: opacity 0.2s;
+}
+.game-menu-modal.active {
+    display: flex;
+    opacity: 1;
+}
+.game-menu-modal-content {
+    background: var(--light);
+    width: 100vw;
+    max-width: 100vw;
+    border-radius: 16px 16px 0 0;
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(82,34,208,0.15);
+    margin: 0 auto 0 auto;
+    animation: slideUpMenu 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+@keyframes slideUpMenu {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+.game-menu-modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    font-size: 2rem;
+    color: var(--dark);
+    cursor: pointer;
+    z-index: 10;
+}
+.game-menu-modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+@media (min-width: 769px) {
+    .game-menu-modal {
+        display: none !important;
+    }
+}
+@media (max-width: 768px) {
+    /* Sembunyikan panel tombol di mobile, pakai modal saja */
+    #game-buttons-panel {
+        display: none !important;
+}
+}
+
+@media screen and (min-width: 769px) {
+    .game-modal, #leaderboardModal {
+        overflow: visible !important;
+    }
+    .game-modal-content, #leaderboardModal .game-modal-content {
+        max-width: 900px !important;
+        width: 95vw !important;
+        margin: 2rem auto !important;
+        padding: 2.5rem 2.5rem !important;
+        border-radius: 20px !important;
+        box-shadow: 0 8px 32px rgba(82,34,208,0.15);
+        background: var(--light);
+        display: block !important;
+        position: relative !important;
+        height: unset !important;
+        max-height: unset !important;
+        overflow: visible !important;
+        transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+        transform: scale(0.96);
+        opacity: 0;
+    }
+    .game-modal-content.show, #leaderboardModal .game-modal-content.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+    .game-board {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 1.5rem !important;
+        width: 100%;
+        margin: 2rem auto 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+        height: unset !important;
+        max-height: unset !important;
+        overflow: visible !important;
+    }
+    .memory-card {
+        height: 150px !important;
+        aspect-ratio: unset !important;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    .game-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    /* Hilangkan background card tambahan di belakang board */
+    .game-container {
+        background: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+    }
+    /* Custom cursor always visible di atas modal game */
+    .game-modal.active ~ .cursor,
+    .game-modal.active ~ .cursor-follower,
+    .cursor, .cursor-follower {
+        display: block !important;
+        z-index: 30001 !important;
+    }
+    .game-modal, .game-modal * {
+        cursor: none !important;
+    }
 }

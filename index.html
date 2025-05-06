@@ -342,12 +342,32 @@
         </div>
     </section>
 
-    <!-- Game Button -->
-    <div class="game-button">
-        <button id="open-game" class="btn btn-primary">
-            <i class="fas fa-gamepad"></i>
-            <span>Play Some Game?</span>
+    <!-- Game Button + Toggle -->
+    <div class="game-toggle-wrapper">
+        <button id="game-toggle-btn" class="btn btn-primary" style="border-radius: 50%; width: 48px; height: 48px; min-width: 48px; min-height: 48px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-lg);">
+            <span id="game-toggle-icon" style="font-size: 1.5rem;">&gt;</span>
         </button>
+        <div class="game-button game-button-hidden" id="game-buttons-panel" style="display: flex; flex-direction: row; gap: 12px; align-items: center; margin-left: 8px;">
+            <button id="open-game" class="btn btn-primary">
+                <i class="fas fa-gamepad"></i>
+                <span>Play Some Game?</span>
+            </button>
+            <button id="open-leaderboard" class="btn btn-outline">
+                <i class="fas fa-trophy"></i>
+                <span>Leaderboard</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Game Menu Modal -->
+    <div class="game-menu-modal" id="gameMenuModal">
+        <div class="game-menu-modal-content">
+            <span class="game-menu-modal-close">&times;</span>
+            <div class="game-menu-modal-buttons">
+                <button id="open-game-mobile" class="btn btn-primary" style="width:100%;margin-bottom:1rem;"><i class="fas fa-gamepad"></i> Play Some Game?</button>
+                <button id="open-leaderboard-mobile" class="btn btn-outline" style="width:100%;"><i class="fas fa-trophy"></i> Leaderboard</button>
+            </div>
+        </div>
     </div>
 
     <!-- Game Modal -->
@@ -368,6 +388,17 @@
                 <div class="game-board">
                     <!-- Cards in JavaScript -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div class="game-modal" id="leaderboardModal">
+        <div class="game-modal-content" style="max-width: 500px;">
+            <span class="game-modal-close leaderboard-close">&times;</span>
+            <h2 style="text-align:center; color: var(--primary); margin-bottom: 1rem;">Leaderboard</h2>
+            <div id="leaderboard-list">
+                <!-- Leaderboard entries will be injected here -->
             </div>
         </div>
     </div>

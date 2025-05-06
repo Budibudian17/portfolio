@@ -557,6 +557,7 @@ function flipCard(card) {
                 setTimeout(() => {
                     showCustomAlert('Congratulations! You won!', 'success');
                     clearInterval(interval);
+                    saveScoreToLeaderboard(timeValue.innerHTML, moves);
                 }, 500);
             }
         } else {
@@ -614,3 +615,140 @@ restartButton.addEventListener('click', initializeGame);
 
 // Initialize game on load
 initializeGame(); 
+
+// Leaderboard logic
+function saveScoreToLeaderboard(timeStr, moves) {
+    // timeStr format: MM:SS
+    const [min, sec] = timeStr.split(':').map(Number);
+    const totalSeconds = min * 60 + sec;
+    const score = { time: timeStr, moves, totalSeconds, date: new Date().toISOString() };
+    let leaderboard = JSON.parse(localStorage.getItem('memoryLeaderboard') || '[]');
+    leaderboard.push(score);
+    // Sort by totalSeconds ascending
+    leaderboard.sort((a, b) => a.totalSeconds - b.totalSeconds);
+    // Keep only top 10
+    leaderboard = leaderboard.slice(0, 10);
+    localStorage.setItem('memoryLeaderboard', JSON.stringify(leaderboard));
+}
+
+function renderLeaderboard() {
+    const leaderboardList = document.getElementById('leaderboard-list');
+    let leaderboard = JSON.parse(localStorage.getItem('memoryLeaderboard') || '[]');
+    if (leaderboard.length === 0) {
+        leaderboardList.innerHTML = '<p style="text-align:center; color:#888;">No records yet. Play the game to set your best score!</p>';
+        return;
+    }
+    let html = '<table style="width:100%;border-collapse:collapse;">';
+    html += '<tr style="background:var(--primary);color:#fff;"><th style="padding:8px;">#</th><th style="padding:8px;">Time</th><th style="padding:8px;">Moves</th><th style="padding:8px;">Date</th></tr>';
+    leaderboard.forEach((entry, idx) => {
+        html += `<tr${idx === 0 ? ' style="background: #e6ddfa; font-weight: bold;"' : ''}>
+            <td style="text-align:center; padding:6px;">${idx + 1}</td>
+            <td style="text-align:center; padding:6px;">${entry.time}</td>
+            <td style="text-align:center; padding:6px;">${entry.moves}</td>
+            <td style="text-align:center; padding:6px; font-size:0.9em; color:#888;">${new Date(entry.date).toLocaleString()}</td>
+        </tr>`;
+    });
+    html += '</table>';
+    leaderboardList.innerHTML = html;
+}
+
+// Leaderboard modal events
+const leaderboardModal = document.getElementById('leaderboardModal');
+const openLeaderboardBtn = document.getElementById('open-leaderboard');
+const closeLeaderboardBtn = document.querySelector('.leaderboard-close');
+
+openLeaderboardBtn.addEventListener('click', () => {
+    renderLeaderboard();
+    leaderboardModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        leaderboardModal.querySelector('.game-modal-content').classList.add('show');
+    }, 10);
+});
+
+closeLeaderboardBtn.addEventListener('click', () => {
+    leaderboardModal.querySelector('.game-modal-content').classList.remove('show');
+    setTimeout(() => {
+        leaderboardModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }, 350);
+});
+
+leaderboardModal.addEventListener('click', (e) => {
+    if (e.target === leaderboardModal) {
+        leaderboardModal.querySelector('.game-modal-content').classList.remove('show');
+        setTimeout(() => {
+            leaderboardModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }, 350);
+    }
+});
+
+// Game toggle button logic
+const gameToggleBtn = document.getElementById('game-toggle-btn');
+const gameToggleIcon = document.getElementById('game-toggle-icon');
+const gameButtonsPanel = document.getElementById('game-buttons-panel');
+const gameToggleWrapper = document.querySelector('.game-toggle-wrapper');
+const gameMenuModal = document.getElementById('gameMenuModal');
+const gameMenuModalClose = document.querySelector('.game-menu-modal-close');
+const openGameMobileBtn = document.getElementById('open-game-mobile');
+const openLeaderboardMobileBtn = document.getElementById('open-leaderboard-mobile');
+
+// Pastikan panel tertutup saat load
+if (gameButtonsPanel) {
+    gameButtonsPanel.classList.remove('active');
+}
+
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
+gameToggleBtn.addEventListener('click', () => {
+    if (isMobile()) {
+        // Tampilkan modal mobile
+        gameMenuModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        if (gameButtonsPanel.classList.contains('active')) {
+            gameButtonsPanel.classList.remove('active');
+            gameToggleIcon.textContent = '>';
+            if (gameToggleWrapper) gameToggleWrapper.classList.remove('panel-active');
+        } else {
+            gameButtonsPanel.classList.add('active');
+            gameToggleIcon.textContent = '<';
+            if (gameToggleWrapper) gameToggleWrapper.classList.add('panel-active');
+        }
+    }
+});
+
+// Modal mobile: close logic
+if (gameMenuModalClose) {
+    gameMenuModalClose.addEventListener('click', () => {
+        gameMenuModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+gameMenuModal.addEventListener('click', (e) => {
+    if (e.target === gameMenuModal) {
+        gameMenuModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Modal mobile: tombol game/leaderboard
+if (openGameMobileBtn) {
+    openGameMobileBtn.addEventListener('click', () => {
+        gameMenuModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        // Trigger open game modal
+        openGameBtn.click();
+    });
+}
+if (openLeaderboardMobileBtn) {
+    openLeaderboardMobileBtn.addEventListener('click', () => {
+        gameMenuModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        // Trigger open leaderboard modal
+        openLeaderboardBtn.click();
+    });
+} 
