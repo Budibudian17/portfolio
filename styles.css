@@ -1772,3 +1772,276 @@ footer::before {
         cursor: auto !important;
     }
 }
+
+/* Memory Card Game Styles */
+.memory-game {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8));
+    padding: 5rem 0;
+}
+
+.game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--light);
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.game-stats {
+    display: flex;
+    gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.game-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    perspective: 1000px;
+}
+
+.memory-card {
+    height: 150px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.memory-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+    transform: rotateY(180deg);
+    pointer-events: none;
+}
+
+.memory-card.matched .card-front {
+    background: var(--primary);
+    opacity: 0.8;
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.card-front {
+    background: var(--primary);
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    background: var(--gray);
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.card-front img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 900px) {
+    .game-modal-content {
+        max-width: 99vw;
+        padding: 1rem 0.2rem;
+    }
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .game-modal-content {
+        max-width: 100vw;
+        padding: 0.5rem 0.1rem;
+    }
+    .game-board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Game Button */
+.game-button {
+    position: fixed;
+    left: 30px;
+    bottom: 30px;
+    z-index: 998;
+}
+
+.game-button .btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-lg);
+    animation: float 3s ease-in-out infinite;
+}
+
+.game-button .btn i {
+    font-size: 1.2rem;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Game Modal - Improved */
+.game-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 20000; /* Make sure it's above header */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.game-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.game-modal-content {
+    background: var(--light);
+    max-width: 900px;
+    width: 98vw;
+    margin: 2rem auto;
+    padding: 1.5rem 0.5rem;
+    border-radius: 16px;
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    box-shadow: 0 8px 32px rgba(82,34,208,0.15);
+    overflow-y: auto;
+    max-height: 95vh;
+}
+
+@media screen and (max-width: 900px) {
+    .game-modal-content {
+        max-width: 99vw;
+        padding: 1rem 0.2rem;
+    }
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .game-modal-content {
+        max-width: 100vw;
+        padding: 0.5rem 0.1rem;
+    }
+    .game-board {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Update existing game container styles */
+.game-container {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .game-button {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+    }
+    
+    .game-button .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .game-button .btn span {
+        display: none;
+    }
+    
+    .game-button .btn i {
+        font-size: 1.4rem;
+    }
+}
+
+/* Show custom cursor in game modal */
+.game-modal.active ~ .cursor,
+.game-modal.active ~ .cursor-follower,
+.game-modal.active .cursor,
+.game-modal.active .cursor-follower {
+    display: block !important;
+    z-index: 30000 !important;
+}
+
+.game-modal, .game-modal * {
+    cursor: none !important;
+}
+
+/* Custom cursor always visible on desktop */
+.cursor, .cursor-follower {
+    display: block !important;
+    z-index: 30000 !important;
+}
+
+.game-modal, .game-modal * {
+    cursor: none !important;
+}
+
+/* Modal Animation */
+.game-modal {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.game-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.game-modal-content {
+    opacity: 0;
+    transform: scale(0.96);
+    transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.game-modal-content.show {
+    opacity: 1;
+    transform: scale(1);
+}

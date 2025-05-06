@@ -436,4 +436,181 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
         });
         revealOnScroll();
     });
-}); 
+});
+
+// Memory Card Game
+const gameModal = document.getElementById('gameModal');
+const openGameBtn = document.getElementById('open-game');
+const closeGameBtn = document.querySelector('.game-modal-close');
+const gameBoard = document.querySelector('.game-board');
+const movesCount = document.getElementById('moves-count');
+const timeValue = document.getElementById('time');
+const startButton = document.getElementById('start-game');
+const restartButton = document.getElementById('restart-game');
+
+let cards;
+let interval;
+let firstCard = false;
+let secondCard = false;
+let moves = 0;
+let seconds = 0;
+let minutes = 0;
+let gameStarted = false;
+let boardLocked = false;
+
+// Items array
+const items = [
+    { name: 'html', image: 'img/skills/html.png' },
+    { name: 'css', image: 'img/skills/css.png' },
+    { name: 'js', image: 'img/skills/js.png' },
+    { name: 'react', image: 'img/skills/react.png' },
+    { name: 'next', image: 'img/skills/next.png' },
+    { name: 'golang', image: 'img/skills/go.png' }
+];
+
+// Initialize game
+function initializeGame() {
+    moves = 0;
+    seconds = 0;
+    minutes = 0;
+    movesCount.innerHTML = moves;
+    timeValue.innerHTML = `00:00`;
+    gameStarted = false;
+    clearInterval(interval);
+    boardLocked = false;
+    firstCard = false;
+    secondCard = false;
+    
+    // Create cards
+    const cardValues = [...items, ...items]
+        .sort(() => Math.random() - 0.5)
+        .map(item => `
+            <div class="memory-card" data-card-value="${item.name}">
+                <div class="card-front">
+                    <img src="${item.image}" alt="${item.name}">
+                </div>
+                <div class="card-back">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        `).join('');
+    
+    gameBoard.innerHTML = cardValues;
+    cards = document.querySelectorAll('.memory-card');
+    
+    // Add click event to cards
+    cards.forEach(card => {
+        // Hapus event listener lama (dengan cloneNode)
+        const newCard = card.cloneNode(true);
+        card.parentNode.replaceChild(newCard, card);
+    });
+    // Ambil ulang cards setelah replace
+    cards = document.querySelectorAll('.memory-card');
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            if (boardLocked) return;
+            if (!gameStarted) {
+                startGame();
+            }
+            if (!this.classList.contains('flipped') && !this.classList.contains('matched')) {
+                flipCard(this);
+            }
+        });
+    });
+}
+
+// Start game
+function startGame() {
+    gameStarted = true;
+    interval = setInterval(() => {
+        seconds++;
+        if (seconds === 60) {
+            minutes++;
+            seconds = 0;
+        }
+        timeValue.innerHTML = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }, 1000);
+}
+
+// Flip card
+function flipCard(card) {
+    card.classList.add('flipped');
+    
+    if (!firstCard) {
+        firstCard = card;
+    } else {
+        moves++;
+        movesCount.innerHTML = moves;
+        secondCard = card;
+        boardLocked = true;
+        
+        if (firstCard.dataset.cardValue === secondCard.dataset.cardValue) {
+            firstCard.classList.add('matched');
+            secondCard.classList.add('matched');
+            firstCard = false;
+            secondCard = false;
+            boardLocked = false;
+            
+            // Check if all cards are matched
+            const matchedCards = document.querySelectorAll('.matched');
+            if (matchedCards.length === items.length * 2) {
+                setTimeout(() => {
+                    showCustomAlert('Congratulations! You won!', 'success');
+                    clearInterval(interval);
+                }, 500);
+            }
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                firstCard = false;
+                secondCard = false;
+                boardLocked = false;
+            }, 900);
+        }
+    }
+}
+
+// Open game modal
+openGameBtn.addEventListener('click', () => {
+    gameModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+        document.querySelector('.game-modal-content').classList.add('show');
+    }, 10);
+    initializeGame();
+});
+
+// Close game modal
+closeGameBtn.addEventListener('click', () => {
+    document.querySelector('.game-modal-content').classList.remove('show');
+    setTimeout(() => {
+        gameModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+        clearInterval(interval);
+    }, 350);
+});
+
+// Close modal when clicking outside
+gameModal.addEventListener('click', (e) => {
+    if (e.target === gameModal) {
+        document.querySelector('.game-modal-content').classList.remove('show');
+        setTimeout(() => {
+            gameModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            clearInterval(interval);
+        }, 350);
+    }
+});
+
+// Event listeners
+startButton.addEventListener('click', () => {
+    if (!gameStarted) {
+        startGame();
+    }
+});
+
+restartButton.addEventListener('click', initializeGame);
+
+// Initialize game on load
+initializeGame(); 
