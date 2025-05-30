@@ -2361,3 +2361,107 @@ footer::before {
         cursor: none !important;
     }
 }
+
+/* DevTools Modal Styles */
+.devtools-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 30000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.devtools-modal-content {
+    background-color: var(--light);
+    padding: 2.2rem 1.5rem 2rem 1.5rem;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 400px;
+    width: 90vw;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease-in-out;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.devtools-icon {
+    font-size: 3rem;
+    color: #ff4444;
+    margin-bottom: 1rem;
+    animation: shake 0.5s ease-in-out;
+}
+
+.devtools-modal-content h3 {
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.devtools-modal-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+}
+
+.devtools-modal-content .btn {
+    min-width: 140px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 500px) {
+    .devtools-modal-content {
+        max-width: 95vw;
+        padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+        border-radius: 10px;
+    }
+    .devtools-modal-content h3 {
+        font-size: 1.1rem;
+    }
+    .devtools-icon {
+        font-size: 2.2rem;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-10px);
+    }
+    75% {
+        transform: translateX(10px);
+    }
+}

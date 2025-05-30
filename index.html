@@ -93,6 +93,54 @@
         </div>
     </section>
 
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Portfolio</h2>
+                <p>Check out my latest work</p>
+            </div>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/ciptalife.png" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>CiptaLife</h3>
+                        <p>CiptaLife is a web-based healthcare platform that helps digitize services at Depok's Health Department.</p>
+                        <div class="portfolio-links">
+                            <a href="https://ciptalife.id/" class="portfolio-link" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link" data-project="ciptalife"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/ERP.jpeg" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>ERP System</h3>
+                        <p>An ERP system for a company that helps manage their business operations.</p>
+                        <div class="portfolio-links">
+                            <a href="#" class="portfolio-link" data-project="erp"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="web">
+                    <img src="img/portfolio.png" alt="Portfolio Image" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3>Portfolio</h3>
+                        <p>A personal portfolio website to highlight my skills, projects, and passion in web development and digital design.</p>
+                        <div class="portfolio-links">
+                            <a href="https://github.com/Budibudian17/portfolio.git" class="portfolio-link" target="_blank"><i class="fas fa-link"></i></a>
+                            <a href="#" class="portfolio-link" data-project="portfolio"><i class="fas fa-search"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
@@ -288,54 +336,6 @@
                             <span class="stage"></span>
                         </div>
                         <span class="stage-label">Intermediate Level</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-title">
-                <h2>My Portfolio</h2>
-                <p>Check out my latest work</p>
-            </div>
-            <div class="portfolio-filter">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="web">Web Development</button>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item" data-category="web">
-                    <img src="img/ciptalife.png" alt="Portfolio Image" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3>CiptaLife</h3>
-                        <p>CiptaLife is a web-based healthcare platform that helps digitize services at Depok's Health Department.</p>
-                        <div class="portfolio-links">
-                            <a href="https://ciptalife.id/" class="portfolio-link" target="_blank"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-link" data-project="ciptalife"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web">
-                    <img src="img/ERP.jpeg" alt="Portfolio Image" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3>ERP System</h3>
-                        <p>An ERP system for a company that helps manage their business operations.</p>
-                        <div class="portfolio-links">
-                            <a href="#" class="portfolio-link" data-project="erp"><i class="fas fa-search"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item" data-category="web">
-                    <img src="img/portfolio.png" alt="Portfolio Image" class="portfolio-img">
-                    <div class="portfolio-overlay">
-                        <h3>Portfolio</h3>
-                        <p>A personal portfolio website to highlight my skills, projects, and passion in web development and digital design.</p>
-                        <div class="portfolio-links">
-                            <a href="https://github.com/Budibudian17/portfolio.git" class="portfolio-link" target="_blank"><i class="fas fa-link"></i></a>
-                            <a href="#" class="portfolio-link" data-project="portfolio"><i class="fas fa-search"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -727,8 +727,64 @@
         </div>
     </div>
 
+    <!-- DevTools Detection Modal -->
+    <div class="devtools-modal" id="devtoolsModal">
+        <div class="devtools-modal-content">
+            <div class="devtools-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Access Denied</h3>
+            <p>Please don't try to inspect or modify this website.</p>
+            <button class="btn btn-primary" onclick="closeDevToolsModal()">I Understand</button>
+        </div>
+    </div>
+
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // DevTools Detection
+        let devToolsOpen = false;
+        const devToolsModal = document.getElementById('devtoolsModal');
+
+        function closeDevToolsModal() {
+            devToolsModal.style.display = 'none';
+        }
+
+        function checkDevTools() {
+            const threshold = 160;
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+
+            if (widthThreshold || heightThreshold) {
+                if (!devToolsOpen) {
+                    devToolsOpen = true;
+                    devToolsModal.style.display = 'flex';
+                }
+            } else {
+                devToolsOpen = false;
+            }
+        }
+
+        // Check for DevTools on load
+        window.addEventListener('load', checkDevTools);
+
+        // Check for DevTools on resize
+        window.addEventListener('resize', checkDevTools);
+
+        // Additional check for F12 key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                e.preventDefault();
+                devToolsModal.style.display = 'flex';
+            }
+        });
+
+        // Check for right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            devToolsModal.style.display = 'flex';
+        });
+    </script>
     <script src="script.js"></script>
 
     <div id="custom-alert" class="custom-alert">
