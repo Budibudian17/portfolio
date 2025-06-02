@@ -285,7 +285,7 @@ revealElements.forEach(element => {
 
 // Typed Text Animation
 const typedText = document.querySelector('.typed-text');
-const textArray = ['Web Developer', 'Front-End Developer', 'User Experience Designer'];
+const textArray = ['Web Developer', 'Front-End Dev', 'Full Stack Dev'];
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -346,7 +346,7 @@ const portfolioData = {
         tech: ['HTML', 'CSS', 'JavaScript'],
         website: 'https://hilmiportfoliodev.netlify.app/',
         github: 'https://github.com/Budibudian17/portfolio.git'
-    }
+    },
 };
 
 // Event untuk icon search di portfolio
@@ -761,3 +761,96 @@ if (openLeaderboardMobileBtn) {
         openLeaderboardBtn.click();
     });
 } 
+
+// Experience Section Animation
+const experienceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            experienceObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.timeline-item').forEach(item => {
+    experienceObserver.observe(item);
+});
+
+// Add hover effect for timeline items
+document.querySelectorAll('.timeline-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        const dot = item.querySelector('.timeline-dot');
+        const content = item.querySelector('.timeline-content');
+        
+        // Add subtle pulse animation to dot
+        dot.style.animation = 'pulse 1s infinite';
+        
+        // Add glow effect to content
+        content.style.boxShadow = '0 8px 30px rgba(var(--primary-rgb), 0.2)';
+    });
+    
+    item.addEventListener('mouseleave', () => {
+        const dot = item.querySelector('.timeline-dot');
+        const content = item.querySelector('.timeline-content');
+        
+        // Remove animations
+        dot.style.animation = '';
+        content.style.boxShadow = '';
+    });
+});
+
+// Add click effect for tech tags
+document.querySelectorAll('.timeline-tech .tech-tag').forEach(tag => {
+    tag.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Create ripple effect
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        tag.appendChild(ripple);
+        
+        // Remove ripple after animation
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    });
+});
+
+// Add CSS for new animations
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.4);
+        }
+        70% {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 10px rgba(var(--primary-rgb), 0);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0);
+        }
+    }
+
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.7);
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style); 
